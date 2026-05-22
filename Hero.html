@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        .banner{
+            --avatar-ref-w: 1400;
+            --avatar-ref-h: 1363;
+            --content-max: 1400px;
+            --design-w: 2560px;
+            --scale: min(1, 100vw / var(--design-w));
+            --slider-w: calc(200px * var(--scale));
+            --slider-h: calc(250px * var(--scale));
+            --ring-z: calc(550px * var(--scale));
+            --perspective: calc(1000px * var(--scale));
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .banner .slider{
+            position: absolute;
+            width: var(--slider-w);
+            height: var(--slider-h);
+            top: 10%;
+            left: calc(50% - var(--slider-w) / 2);
+            transform-style: preserve-3d;
+            transform: perspective(var(--perspective));
+            animation: autoRun 20s linear infinite;
+            z-index: 1;
+        }  
+        .banner .slider .item{
+            position: absolute;
+            inset: 0 0 0 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotateY(calc( (var(--i) - 1) * (360 / var(--quantity)) * 1deg)) 
+            translateZ(var(--ring-z)) !important;
+            animation: autoRun 20s linear infinite;
+        }
+        @keyframes autoRun{
+            from{
+                transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(0deg);
+            }
+            to{
+                transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(360deg);
+            }
+        }
+        .banner .slider .item img{
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            aspect-ratio: var(--avatar-ref-w) / var(--avatar-ref-h);
+            object-fit: contain;
+            object-position: center;
+        }
+        .banner .content{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(var(--content-max), 100vw);
+            height: max-content;
+            padding-bottom: calc(100px * var(--scale));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner .content .model{
+            background-image: url(avatar.png);
+            width: 100%;
+            height: 75vh;
+            position: absolute;
+            bottom: 0;
+            background-size: auto 130%;
+            background-repeat: no-repeat;
+            background-position: top center;
+
+        }
+    </style>
+</head>
+<body>
+	<div class="banner">
+		<div class="slider" style="--quantity: 8;">
+            <div class="item" style="--i: 1;">
+                <img src="img1.png" alt="">
+            </div>
+            <div class="item" style="--i: 2;">
+                <img src="img2.png"  alt="">
+            </div>
+            <div class="item" style="--i: 3;">
+                <img src="img3.png" alt="">
+            </div>
+            <div class="item" style="--i: 4;">
+                <img src="img4.png" alt="">
+            </div>
+            <div class="item" style="--i: 5;">
+                <img src="img5.png" alt="">
+            </div>
+            <div class="item" style="--i: 6;">
+                <img src="img6.png" alt="">
+            </div>
+            <div class="item" style="--i: 7;">
+                <img src="img7.png" alt="">
+            </div>
+            <div class="item" style="--i: 8;">
+                <img src="img8.png" alt="">
+            </div>
+        </div>
+        <div class="content">
+            <div class="model"></div>
+        </div>
+    </div>
+    
+</body>
