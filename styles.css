@@ -4,10 +4,11 @@
     --avatar-ref-h: 1363;
     --content-max: 1140px;
     --design-w: 2560px;
-    --scale: min(1, 100vw / var(--design-w));
-    --slider-w: calc(200px * var(--scale));
-    --slider-h: calc(250px * var(--scale));
-    --ring-z: calc(550px * var(--scale));
+    /* Mobile-first carousel (overridden at 768px+) */
+    --scale: min(1, 100vw / 1200px);
+    --slider-w: calc(175px * var(--scale));
+    --slider-h: calc(218px * var(--scale));
+    --ring-z: calc(480px * var(--scale));
     --perspective: calc(1000px * var(--scale));
 
     --paper: #f7f4ef;
@@ -849,6 +850,17 @@ a { color: inherit; }
     gap: 1rem;
     font-size: 0.9rem;
     color: var(--muted);
+}
+
+/* Carousel: desktop / tablet (768px+) */
+@media (min-width: 768px) {
+    :root {
+        --scale: min(1, 100vw / var(--design-w));
+        --slider-w: calc(175px * var(--scale));
+        --slider-h: calc(218px * var(--scale));
+        --ring-z: calc(480px * var(--scale));
+        --perspective: calc(1000px * var(--scale));
+    }
 }
 
 /* —— Responsive —— */
