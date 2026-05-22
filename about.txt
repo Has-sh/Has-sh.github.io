@@ -1,0 +1,51 @@
+Muhammad Hashaam Shahid
+
+Æ +92 335 504 1513 | [ hashaamshahid111@gmail.com | ° LinkedIn |  GitHub | 1⁄2 Islamabad, Pakistan
+Education
+Middle East Technical University Mersin, T ̈urkiye
+B.S. Computer Engineering Oct 2020 – Sep 2024
+Specialization: Backend Development, API Design, Database Management, Machine Learning
+Work Experience
+RedCoast Islamabad, Pakistan
+Software Engineer - Python Nov 2025 – Present
+• Built multiple Python-based ETL pipelines to ingest, transform, and load large-scale advertising data from
+multiple Ads APIs into the analytics platform of Fabcom, an award-winning Google Premier Partner agency
+across APAC markets.
+• Designed and optimized Google BigQuery datasets using partitioning, clustering, and incremental loads to
+enable low-latency analytical queries.
+• Built Competitor Analysis and Marketing System Audit pipelines on Stackwise by parallelizing social profile
+scrapers and Playwright-based web scraping powered by GPT-4o for data analysis and quantified audit scoring.
+• Developed Stackwise RAG chatbot using Playwright-crawled knowledge base, OpenAI embeddings with pgvector
+similarity search, and GPT-4o response generation.
+NanoByte Technologies Lahore, Pakistan
+Associate Software Engineer – .NET Feb 2025 – Oct 2025
+• Architected a multi-tenant SaaS platform using .NET 8 Web API, SignalR, Firebase, and MSSQL, following
+CQRS and Clean Architecture principle
+• Built civic engagement platform (1,000+ users) with React.js, PostgreSQL/RDS, S3, Flask API on
+Dockerized AWS Lambda and OpenAI chatbot with CloudWatch automation.
+• Optimized an internal portal serving 10,000+ users by implementing Azure Message Queues and WebJob
+for async PDF generation, reducing processing from 10+ min to 1 min.
+• Migrated 5 App Services & 8 libraries from .NET Framework 4.8 to .NET 8, implemented CI/CD
+pipelines,and built database backup automation pipeline using Dapper and MSSQL.
+Evamp & Saanga Islamabad, Pakistan
+Software Engineer Intern – Java Sep 2023 – Oct 2023
+• Built Employee Management System using Spring Boot MVC, Spring Security, AngularJS, and
+3NF-normalized MySQL with JPA/Hibernate.
+CyberSoft Vantage Islamabad, Pakistan
+Software Engineer Intern – Machine Learning Jul 2023 – Aug 2023
+• Developed LSTM sentiment model with TensorFlow/Keras achieving 81.2% accuracy on 14,640 tweets
+and integrated into Chrome Extension with Django API.
+Projects
+Notable Projects
+• Developed Automated Sea Turtle Hatchling Protection System using Flask on Apache server (Raspberry
+Pi) and Java Android app. Integrated YOLO v8 model achieving 71.4% precision and 80.6% F1 score for
+turtle detection.
+• Developed projects in ML, Computer Graphics, Security, and OOP.
+Skills
+.NET Stack: C#, ASP.NET Core, .NET Framework, .NET Core, Entity Framework, ADO.NET, Dapper, SignalR,
+Microsoft IIS
+Backend & APIs: RESTful APIs, Java, Python, Spring Boot, Django, Flask, JPA/Hibernate, Unit Testing
+Cloud & DevOps: Azure, AWS, Docker, CI/CD, Git/GitHub
+Databases: Microsoft SQL Server, PostgreSQL, MySQL, Redis, SQLite
+Tools: Microsoft Blob Storage, Stripe, Firebase, Postman, Visual Studio, VS Code, IntelliJ IDEA
+Languages: English (Native), Urdu (Native), Turkish (Elementary)
