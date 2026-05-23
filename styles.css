@@ -4,14 +4,7 @@
     --avatar-ref-h: 1363;
     --content-max: 1140px;
     --design-w: 2560px;
-    /* Fallback values for Android Chrome <79 which doesn't support min() in custom properties */
-    --scale: 0.3;
-    --slider-w: 52px;
-    --slider-h: 65px;
-    --ring-z: 144px;
-    --perspective: 300px;
-
-    /* Modern browsers override the above with min() */
+    /* Mobile-first carousel (overridden at 768px+) */
     --scale: min(1, 100vw / 1200px);
     --slider-w: calc(175px * var(--scale));
     --slider-h: calc(218px * var(--scale));
@@ -45,15 +38,14 @@ body {
     line-height: 1.65;
     color: var(--ink);
     background: var(--paper);
-    overflow-x: hidden; /* clip not supported on Android <10 Chrome 90; hidden is safe on body */
+    overflow-x: clip; /* moved from .hero — clip on body doesn't flatten 3D */
 }
 
 img {
     max-width: 100%;
     height: auto;
     display: block;
-    /* filter: none removed — in older WebKit, any filter value (even none)
-       creates a stacking context that can isolate images from their 3D parent */
+    filter: none;
 }
 
 a { color: inherit; }
@@ -231,7 +223,8 @@ a { color: inherit; }
 
 .hero-bg {
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0; /* inset shorthand not supported on Android Chrome <87 */
+    inset: 0;
+    z-index: 0;
     background: linear-gradient(180deg, var(--white) 0%, var(--paper) 88%);
 }
 
@@ -239,13 +232,6 @@ a { color: inherit; }
     position: relative;
     width: 100%;
     min-height: calc(100vh - 4.5rem);
-    /* Perspective as a CSS PROPERTY here (not function on the child) fixes the
-       Safari/iOS bug where perspective() + transform-style:preserve-3d on the
-       SAME element silently flattens all 3D children on real mobile devices. */
-    perspective: var(--perspective);
-    -webkit-perspective: var(--perspective);
-    perspective-origin: 50% 38%;          /* aim camera at upper ring */
-    -webkit-perspective-origin: 50% 38%;
 }
 
 /* Layer 1: avatar behind slider */
@@ -288,8 +274,8 @@ a { color: inherit; }
 
 .hero .slider .item {
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0; /* inset: 0 not supported on Android Chrome <87 — this was making items invisible */
-    overflow: hidden; /* overflow: clip not supported on Android Chrome <90 */
+    inset: 0;
+    overflow: clip;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -298,20 +284,17 @@ a { color: inherit; }
         translateZ(var(--ring-z));
     -webkit-transform: rotateY(calc((var(--i) - 1) * (360 / var(--quantity)) * 1deg))
         translateZ(var(--ring-z));
+    /* animation: autoRun removed — this was overriding the transform above and stacking all cards */
 }
 
-/* Keyframes: NO perspective() here — it's a property on .hero-stage.
-   Mixing perspective() function + transform-style:preserve-3d on the same
-   element breaks mobile Safari. With perspective on the parent, rotateX
-   produces the correct downward tilt as seen by that camera. */
 @keyframes autoRun {
-    from { transform: rotateX(-16deg) rotateY(0deg); }
-    to   { transform: rotateX(-16deg) rotateY(360deg); }
+    from { transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(0deg); }
+    to   { transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(360deg); }
 }
 
 @-webkit-keyframes autoRun {
-    from { -webkit-transform: rotateX(-16deg) rotateY(0deg); }
-    to   { -webkit-transform: rotateX(-16deg) rotateY(360deg); }
+    from { -webkit-transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(0deg); }
+    to   { -webkit-transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(360deg); }
 }
 
 .hero .slider .item img {
@@ -328,7 +311,7 @@ a { color: inherit; }
 /* Edge labels — tiny, out of the 3D stage */
 .hero-edges {
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
+    inset: 0;
     z-index: 25;
     pointer-events: none;
 }
