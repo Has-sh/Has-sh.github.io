@@ -216,7 +216,7 @@ a { color: inherit; }
     position: relative;
     width: 100%;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: clip;
     padding-top: 4.5rem;
 }
 
@@ -272,7 +272,7 @@ a { color: inherit; }
 .hero .slider .item {
     position: absolute;
     inset: 0;
-    overflow: hidden;
+    overflow: clip;
     display: flex;
     align-items: center;
     justify-content: center;
