@@ -38,6 +38,7 @@ body {
     line-height: 1.65;
     color: var(--ink);
     background: var(--paper);
+    overflow-x: clip; /* moved from .hero — clip on body doesn't flatten 3D */
 }
 
 img {
@@ -216,7 +217,7 @@ a { color: inherit; }
     position: relative;
     width: 100%;
     min-height: 100vh;
-    overflow: clip;
+    /* overflow: clip removed — any overflow on a 3D ancestor flattens the carousel on mobile Safari */
     padding-top: 4.5rem;
 }
 
@@ -264,8 +265,10 @@ a { color: inherit; }
     top: 14%;
     left: calc(50% - var(--slider-w) / 2);
     transform-style: preserve-3d;
-    transform: perspective(var(--perspective));
+    -webkit-transform-style: preserve-3d;  /* Safari */
+    /* perspective() removed from here — it's now a property on .hero-stage */
     animation: autoRun 20s linear infinite;
+    -webkit-animation: autoRun 20s linear infinite;
     z-index: 10;
 }
 
@@ -276,14 +279,22 @@ a { color: inherit; }
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Static positioning around the ring — only .slider rotates, NOT each item */
     transform: rotateY(calc((var(--i) - 1) * (360 / var(--quantity)) * 1deg))
-        translateZ(var(--ring-z)) !important;
-    animation: autoRun 20s linear infinite;
+        translateZ(var(--ring-z));
+    -webkit-transform: rotateY(calc((var(--i) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(var(--ring-z));
+    /* animation: autoRun removed — this was overriding the transform above and stacking all cards */
 }
 
 @keyframes autoRun {
     from { transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(0deg); }
-    to { transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(360deg); }
+    to   { transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(360deg); }
+}
+
+@-webkit-keyframes autoRun {
+    from { -webkit-transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(0deg); }
+    to   { -webkit-transform: perspective(var(--perspective)) rotateX(-16deg) rotateY(360deg); }
 }
 
 .hero .slider .item img {
