@@ -23,7 +23,6 @@ npx serve .
 | `index.html` | All sections: hero, about, skills, work, experience, contact |
 | `styles.css` | Warm editorial theme + 3D hero styles |
 | `main.js` | Nav scroll, mobile menu, form placeholder |
-| `Hero.html` | Original hero-only demo |
 
 ## Customize
 
